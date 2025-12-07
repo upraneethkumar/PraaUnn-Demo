@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PraaUnn - Premium Leather Bags</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg: #121212;
+            --gold-primary: #D4A02A;
+            --gold-accent: #E0B24A;
+            --cream-bg: #FBF6EE;
+            --white: #FFFFFF;
+            --muted-text: #BDB0A0;
+            --spacing-unit: 8px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+
+        /* Header */
+        header {
+            background: var(--dark-bg);
+            padding: 24px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 48px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: var(--white);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--dark-bg);
+            padding: 80px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .hero-text h1 .highlight {
+            color: var(--gold-primary);
+        }
+
+        .hero-text p {
+            color: var(--muted-text);
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .btn-primary {
+            background: var(--gold-primary);
+            color: var(--dark-bg);
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 160, 42, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .diagonal-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .diagonal-lines::before,
+        .diagonal-lines::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 6px;
+            background: var(--gold-primary);
+            opacity: 0.2;
+            transform: rotate(-25deg);
+        }
+
+        .diagonal-lines::before {
+            top: 30%;
+            left: -50%;
+        }
+
+        .diagonal-lines::after {
+            top: 50%;
+            left: -50%;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            background: var(--gold-primary);
+            color: var(--dark-bg);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            z-index: 10;
+            box-shadow: 0 8px 30px rgba(212, 160, 42, 0.4);
+        }
+
+        .product-image {
+            width: 400px;
+            height: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+
+        /* Feature Tags */
+        .feature-tags {
+            background: var(--dark-bg);
+            padding: 4px 0 60px;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .tag {
+            background: transparent;
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Latest Products */
+        .latest-products {
+            padding: 100px 0;
+            background: var(--cream-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .section-title .highlight {
+            color: var(--gold-primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-card.featured {
+            border-color: var(--gold-accent);
+            box-shadow: 0 8px 30px rgba(224, 178, 74, 0.2);
+        }
+
+        .product-card img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 24px;
+        }
+
+        .product-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Quality Control */
+        .quality-control {
+            background: var(--dark-bg);
+            padding: 100px 0;
+        }
+
+        .quality-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .quality-image img {
+            width: 100%;
+            max-width: 450px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+        }
+
+        .quality-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .quality-text h2 .highlight {
+            color: var(--gold-primary);
+        }
+
+        .quality-text p {
+            color: var(--muted-text);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .btn-secondary {
+            background: var(--gold-primary);
+            color: var(--dark-bg);
+            padding: 14px 36px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold-accent);
+            transform: translateY(-2px);
+        }
+
+        /* New Arrival */
+        .new-arrival {
+            padding: 100px 0;
+            background: var(--cream-bg);
+        }
+
+        .arrival-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--dark-bg);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card.featured {
+            background: #252525;
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(212, 160, 42, 0.2);
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        .stars {
+            color: var(--gold-primary);
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-card p {
+            color: var(--muted-text);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .client-name {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+            background: var(--cream-bg);
+        }
+
+        .newsletter-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .newsletter-image img {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .newsletter-form h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-form h2 .highlight {
+            color: var(--gold-primary);
+        }
+
+        .newsletter-form p {
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 16px 24px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .footer-section h4 {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section ul li a {
+            color: var(--muted-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--gold-primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: var(--muted-text);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content,
+            .quality-content,
+            .newsletter-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .products-grid,
+            .arrival-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">PraaUnn</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#product">Product</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Elevate Your Style with Premium <span class="highlight">Leather Bags</span></h1>
+                    <p>Our leather bags are expertly designed using only the finest materials, blended from luxurious leathers with styles that is committed to quality and craftsmanship.</p>
+                    <a href="#" class="btn-primary">Buy Now</a>
+                </div>
+                <div class="hero-image">
+                    <div class="diagonal-lines"></div>
+                    <img src="assets/leather_bag.png" alt="Leather Bag" class="product-image">
+                    <div class="product-badge">BUY NOW</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Tags -->
+    <section class="feature-tags">
+        <div class="container">
+            <div class="tags-container">
+                <span class="tag">Water-Resistant</span>
+                <span class="tag">Light Weight</span>
+                <span class="tag">100% Leather</span>
+                <span class="tag">Color Proof</span>
+                <span class="tag">Luxurious</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Products -->
+    <section class="latest-products">
+        <div class="container">
+            <h2 class="section-title">Our <span class="highlight">Product</span> Categories</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="assets/sling_bag.jpg" alt="Sling Bag">
+                    <h3>Sling Bag</h3>
+                </div>
+                <div class="product-card featured">
+                    <img src="assets/leather_bag.png" alt="Tote Bag">
+                    <h3>Tote Bag</h3>
+                </div>
+                <div class="product-card">
+                    <img src="assets/office_bag.avif" alt="Office Bag">
+                    <h3>Office Bag</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Control -->
+    <section class="quality-control">
+        <div class="container">
+            <div class="quality-content">
+                <div class="quality-image">
+                    <img src="assets/leather_bag.png" alt="Quality Product">
+                </div>
+                <div class="quality-text">
+                    <h2>Quality <span class="highlight">Control</span></h2>
+                    <p>Welcome to our exquisite leather bag treasure, where every bag tells a unique story. With over 50 years of leather expertise, a diverse selection of meticulously crafted leather. Each piece is made to perfection to the highest standards of quality, design and craftsmanship in a way consistent feel for us.</p>
+                    <p>As the first, we love all style and provide accessories in their style at an affordable price. Our collection offers genuine eco-friendly leather that is comfortable enough to use regularly.</p>
+                    <a href="#" class="btn-secondary">See More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrival -->
+    <section class="new-arrival">
+        <div class="container">
+            <h2 class="section-title">Black <span class="highlight">FRIDAY</span> Sale</h2>
+            <div class="arrival-grid">
+                <div class="product-card">
+                    <img src="assets/1.png" alt="Sling Bag">
+                    <h3>Offer: ₹1,799</h3>
+                    <h4>Price: <s>₹3,799</s></h4>
+                </div>
+                <div class="product-card">
+                    <img src="assets/2.jpg" alt="Tote Bag">
+                    <h3>Offer: ₹1,499</h3>
+                    <h4>Price: <s>₹3,499</s></h4>
+                </div>
+                <div class="product-card">
+                    <img src="assets/3.avif" alt="Office Bag">
+                    <h3>Offer: ₹2,599</h3>
+                    <h4>Price: <s>₹4,299</s></h4>
+                </div>
+                <div class="product-card">
+                    <img src="assets/4.avif" alt="Sling Bag">
+                    <h3>Offer: ₹1,299</h3>
+                    <h4>Price: <s>₹3,699</s></h4>
+                </div>
+                <div class="product-card">
+                    <img src="assets/5.avif" alt="Tote Bag">
+                    <h3>Offer: ₹2,999</h3>
+                    <h4>Price: <s>₹4,999</s></h4>
+                </div>
+                <div class="product-card">
+                    <img src="assets/6.jpg" alt="Office Bag">
+                    <h3>Offer: ₹5,299</h3>
+                    <h4>Price: <s>₹9,999</s></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Clients <span class="highlight">Testimonials</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200" alt="Client" class="testimonial-image">
+                    <div class="stars">★★★★★</div>
+                    <p>I am incredibly impressed by my shopping experience. The selection of meticulously crafted leather bags is truly impressive. The quality and craftsmanship of the bag I purchased exceeded my expectations.</p>
+                    <div class="client-name">Regina Miles</div>
+                </div>
+                <div class="testimonial-card featured">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="Client" class="testimonial-image">
+                    <div class="stars">★★★★★</div>
+                    <p>I am incredibly impressed by my shopping experience. The selection of meticulously crafted leather bags is truly impressive. The quality and craftsmanship of the bag I purchased exceeded my expectations.</p>
+                    <div class="client-name">Regina Miles</div>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" alt="Client" class="testimonial-image">
+                    <div class="stars">★★★★★</div>
+                    <p>I am incredibly impressed by my shopping experience. The selection of meticulously crafted leather bags is truly impressive. The quality and craftsmanship of the bag I purchased exceeded my expectations.</p>
+                    <div class="client-name">Regina Miles</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-image">
+                    <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600" alt="Leather Bag">
+                </div>
+                <div class="newsletter-form">
+                    <h2>Get Instant <span class="highlight">Discount</span></h2>
+                    <p>Subscribe Our newsletter and get all latest news about our latest product, offer and more.</p>
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email address">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">PraaUnn</div>
+                </div>
+                <div class="footer-section">
+                    <h4>MENU</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Product</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>ABOUT US</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Updates</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>CONTACT US</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Allrightsreserved Terms & Condition</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
